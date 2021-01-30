@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {TodoContext} from '../contexts/TodoContext'
+import { TodoContextType } from '../contexts/TodoContextType'
 import { Todo } from '../models/Todo'
 
 interface Itodo{
@@ -6,13 +8,14 @@ interface Itodo{
 }
 
 const TodoListItem = (props: Itodo) =>{
+    const {removeTodo, toggle} = useContext<TodoContextType>(TodoContext)
 
     const handleChange = () => {
-        console.log('change status')
+        toggle(props.todo)
     }
 
     const onRemove = (Todo: Todo) => {
-        console.log(Todo)
+        removeTodo(Todo)
     }
 
     return(
